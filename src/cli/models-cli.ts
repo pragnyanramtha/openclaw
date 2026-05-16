@@ -335,7 +335,7 @@ export function registerModelsCli(program: Command) {
     .option("--device-code", "Use the provider device-code auth method", false)
     .option("--set-default", "Apply the provider's default model recommendation", false)
     .action(async (opts, command) => {
-      if (opts.deviceCode && opts.method && opts.method !== "device-code") {
+      if (opts.deviceCode && typeof opts.method === "string" && opts.method !== "device-code") {
         throw new Error(
           "--device-code cannot be combined with --method unless method is device-code.",
         );
